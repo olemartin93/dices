@@ -1,0 +1,196 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: ui-rounded, 'SF Pro Rounded', 'Nunito', system-ui, sans-serif;
+
+  /* Durations below match ROLL_MS (1150ms) in src/dice/timing.ts. */
+  --animate-toss: toss 1150ms linear both;
+  --animate-shadow: shadow 1150ms linear both;
+  --animate-tumble: tumble 1150ms linear both;
+  --animate-pop: pop 450ms cubic-bezier(0.2, 1.8, 0.4, 1) both;
+  --animate-ripple: ripple 650ms ease-out forwards;
+  --animate-shake: shake 320ms ease-out;
+  --animate-shake-hard: shake-hard 600ms ease-out;
+  --animate-flash: flash 900ms ease-out forwards;
+  --animate-banner: banner 700ms ease-out both;
+  --animate-breathe: breathe 2.4s ease-in-out infinite;
+  --animate-glow: glow 1.2s ease-out both;
+  --animate-sheet: sheet 280ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+  --animate-fade: fade 200ms ease-out both;
+
+  @keyframes toss {
+    0% {
+      transform: translate3d(var(--from-x, 0px), var(--from-y, 200px), 0) scale(0.35);
+      opacity: 0;
+      animation-timing-function: cubic-bezier(0.25, 0.7, 0.5, 1);
+    }
+    8% {
+      opacity: 1;
+    }
+    44% {
+      transform: translate3d(calc(var(--from-x, 0px) * 0.22), calc(var(--from-y, 200px) * 0.22 - 90px), 0) scale(1.28);
+      animation-timing-function: cubic-bezier(0.6, 0, 0.9, 0.5);
+    }
+    72% {
+      transform: translate3d(0, 0, 0) scale(1.08, 0.9);
+      animation-timing-function: cubic-bezier(0.2, 0.7, 0.4, 1);
+    }
+    84% {
+      transform: translate3d(0, -16px, 0) scale(0.98, 1.03);
+      animation-timing-function: cubic-bezier(0.6, 0, 0.8, 0.6);
+    }
+    93% {
+      transform: translate3d(0, 0, 0) scale(1.02, 0.98);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes shadow {
+    0% {
+      transform: scale(0.2);
+      opacity: 0;
+    }
+    44% {
+      transform: scale(0.55);
+      opacity: 0.2;
+    }
+    72% {
+      transform: scale(1.15);
+      opacity: 0.7;
+    }
+    84% {
+      transform: scale(0.85);
+      opacity: 0.45;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes tumble {
+    0% {
+      transform: rotateZ(calc(var(--rest, 0deg) + var(--spin, 720deg))) rotateX(75deg) rotateY(-40deg);
+      animation-timing-function: cubic-bezier(0.3, 0.5, 0.6, 1);
+    }
+    40% {
+      transform: rotateZ(calc(var(--rest, 0deg) + var(--spin, 720deg) * 0.4)) rotateX(-40deg) rotateY(50deg);
+      animation-timing-function: cubic-bezier(0.4, 0.2, 0.6, 1);
+    }
+    72% {
+      transform: rotateZ(var(--rest, 0deg)) rotateX(0deg) rotateY(0deg);
+    }
+    84% {
+      transform: rotateZ(calc(var(--rest, 0deg) - 5deg)) rotateX(12deg) rotateY(-6deg);
+    }
+    100% {
+      transform: rotateZ(var(--rest, 0deg)) rotateX(0deg) rotateY(0deg);
+    }
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0.55;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-3px, 2px); }
+    50% { transform: translate(3px, -2px); }
+    75% { transform: translate(-1px, 1px); }
+  }
+
+  @keyframes shake-hard {
+    0%, 100% { transform: translate(0, 0) rotate(0); }
+    15% { transform: translate(-10px, 4px) rotate(-1.5deg); }
+    30% { transform: translate(9px, -5px) rotate(1.2deg); }
+    45% { transform: translate(-7px, 3px) rotate(-0.8deg); }
+    60% { transform: translate(5px, -2px) rotate(0.5deg); }
+    80% { transform: translate(-2px, 1px) rotate(0); }
+  }
+
+  @keyframes flash {
+    0% { opacity: 0.75; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes banner {
+    0% { transform: scale(0.2) rotate(-8deg); opacity: 0; }
+    55% { transform: scale(1.15) rotate(2deg); opacity: 1; }
+    80% { transform: scale(0.97) rotate(0); }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.04); }
+  }
+
+  @keyframes glow {
+    0% { filter: brightness(2.2) saturate(1.4); }
+    100% { filter: brightness(1) saturate(1); }
+  }
+
+  @keyframes sheet {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0); }
+  }
+
+  @keyframes fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    margin: 0;
+    background: #07070d;
+    color: #fff;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    font-family: var(--font-display);
+  }
+
+  button {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-shake,
+  .animate-shake-hard {
+    animation: none;
+  }
+}
